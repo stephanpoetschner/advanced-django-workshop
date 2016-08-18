@@ -3,7 +3,7 @@ Getting Started
 
 -   Download and install Vagrant (https://www.vagrantup.com/downloads.html)
 
--   Add `192.168.50.50	dev.stephan-poetschner.at` to hosts-file 
+-   Add `192.168.50.50	dev.jobzwo.at` to hosts-file 
     (e.g. `/etc/hosts` on you LOCAL (!) linux machine)
 
 -   Run `vagrant up`
@@ -13,12 +13,12 @@ Getting Started
 
 -   Activate virtualenv (`workon my_venv`)
 
--   Change directory to `/vagrant` (`cd /vagrant/`)
+-   Change directory to `/vagrant/jobzwo` (`cd /vagrant/jobzwo`)
 
--   Run migrations (`./manage.py migrations`)
+-   Run migrations (`./manage.py migrate`)
 
 -   Run development server
 
-        $ sudo /vagrant/.venvs/my_venv/bin/python /vagrant/manage.py runserver 0:80
+        $ sudo /vagrant/.venvs/my_venv/bin/python /vagrant/jobzwo/manage.py runserver 0:80
         
--   Access http://dev.stephan-poetschner.at/
+-   Access http://dev.jobzwo.at/

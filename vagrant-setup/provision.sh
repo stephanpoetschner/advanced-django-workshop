@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PROJECT_NAME=djinstagram
+export PROJECT_NAME=jobzwo
 #export PYTHON_VERSION=python
 export PYTHON_VERSION=python3
 
@@ -112,7 +112,13 @@ source ${BIN_VIRTUALENVWRAPPER}
 EOT
 
 
-    echo "source $HOME/virtualenv.sh" >> $HOME/.bashrc
+    cat <<EOT >> $HOME/.bashrc
+
+source $HOME/virtualenv.sh
+HISTSIZE=-1
+HISTFILESIZE=-1
+EOT
+
     chmod u+x $HOME/virtualenv.sh
     chown vagrant:vagrant $HOME/virtualenv.sh
 fi
