@@ -1,0 +1,9 @@
+Django==1.8
+gunicorn
+psycopg2
+
+requests
+Pillow
+pytz
+
+structlog
