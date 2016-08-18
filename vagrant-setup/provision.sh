@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export PROJECT_NAME=django_advanced
+export PROJECT_NAME=djinstagram
 #export PYTHON_VERSION=python
 export PYTHON_VERSION=python3
 
