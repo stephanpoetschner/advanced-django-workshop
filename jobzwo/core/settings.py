@@ -2,6 +2,8 @@
 import os
 import sys
 
+from core.bootstrap import setup_structlog
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'core.middleware.StructLoggingMiddleware',
     'core.middleware.ExceptionLoggingMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -143,7 +146,10 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-LOGGING_APPS_PREFIX = 'jobzwo.'
+LOGGING_PREFIX = 'jobzwo.'
+
+# Logging
+setup_structlog()
 
 LOGGING = {
     'version': 1,

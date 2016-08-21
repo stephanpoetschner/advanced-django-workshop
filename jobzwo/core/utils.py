@@ -1,11 +1,13 @@
 # coding: utf-8
 import logging
 
+import structlog
+
 from django.conf import settings
 
 
 def getLogger(name):
-    return logging.getLogger(settings.LOGGING_APPS_PREFIX + name)
+    return structlog.getLogger(settings.LOGGING_PREFIX + name)
 
 
 class RequireTestingFalse(logging.Filter):
