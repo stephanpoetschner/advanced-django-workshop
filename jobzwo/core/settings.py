@@ -67,7 +67,7 @@ if DEBUG_TOOLBAR_ENABLED:
     ]
 
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'jobzwo.urls'
 
 TEMPLATES = [
     {
