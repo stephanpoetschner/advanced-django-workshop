@@ -30,6 +30,8 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 INSTALLED_APPS = (
     'core',
 
+    'debug_toolbar',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,8 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'core.middleware.StructLoggingMiddleware',
     'core.middleware.ExceptionLoggingMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

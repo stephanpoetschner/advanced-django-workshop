@@ -14,3 +14,9 @@ if settings.DEBUG:
         url(r'403/', views.raise403),
         url(r'500/', views.raise500),
     ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
