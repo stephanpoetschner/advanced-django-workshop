@@ -3,6 +3,8 @@ import uuid
 
 import structlog
 
+from django.utils import timezone
+
 from core.utils import getLogger
 log = getLogger(__name__)
 
@@ -25,3 +27,15 @@ class StructLoggingMiddleware(object):
 class ExceptionLoggingMiddleware(object):
     def process_exception(self, request, exception):
         log.exception(str(exception))
+
+
+class ResponseTimeLoggingMiddleware(object):
+    def process_request(self, request):
+        request.response_start = timezone.now()
+
+    def process_response(self, request, response):
+        request.response_stop = timezone.now()
+        processing_time = (request.response_stop - request.response_start)
+        msecs = int(processing_time.total_seconds() * 1000.)
+        log.info('View processing finished.', timing_ms=msecs)
+        return response

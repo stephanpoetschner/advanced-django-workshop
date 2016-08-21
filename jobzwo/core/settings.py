@@ -41,6 +41,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'core.middleware.ResponseTimeLoggingMiddleware',
     'core.middleware.StructLoggingMiddleware',
     'core.middleware.ExceptionLoggingMiddleware',
 
