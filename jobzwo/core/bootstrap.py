@@ -12,7 +12,7 @@ def setup_structlog():
             
             structlog.processors.KeyValueRenderer(
                 key_order=['event', 'path', 'method', 'logger', 'level',
-                           'request_id', ],
+                           'client_ip', 'request_id', ],
             ),
         ],
         cache_logger_on_first_use=True,

@@ -19,7 +19,7 @@ TESTING = (len(sys.argv) > 1 and sys.argv[1] == 'test')
 
 ALLOWED_HOSTS = []
 INTERNAL_IPS = [
-    '192.168.50.50'
+    '192.168.50.1'
 ]
 
 DEBUG_TOOLBAR_ENABLED = False
