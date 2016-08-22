@@ -1,0 +1,23 @@
+{% comment %}
+job
+{% endcomment %}
+
+<div class="item job-item job hentry">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="no-margin-top">
+        <a class="" href="{{ job.external_url }}">{{ job.title }}
+            <i class="fa fa-link color-white-mute font-1x"></i></a></h3>
+      <h5>
+        <a href="http://jobplanet.jegtheme.com/company/fast-company/"><span class="color-black">{{ job.company_name }}</span></a> 
+            – <span class="color-white-mute">{{ job.location }}</span></h5>
+      <p>{{ job.description }}</p>
+
+      <div>
+        <span class="color-white-mute">{{ job.created|timeuntil }}</span> – <!-- Login -->
+         <a class="send-email btn btn-theme btn-xs btn-default" href="mailto:{{ job.contact_mail }}">email</a>
+      </div>
+    </div>
+  </div><!-- .row -->
+</div><!-- .item.job-item.job.hentry -->
+

@@ -1,0 +1,13 @@
+{% comment %}
+jobs
+{% endcomment %}
+
+<div class="block-section-sm box-list-area filter-content">
+  <div class="box-list-wrapper">
+    <div class="box-list">
+      {% for job in jobs %}
+        {% include "jobs/_includes/_job_item.html" with job=job %}
+      {% endfor %}
+    </div><!-- .box-list -->
+  </div><!-- .box-list-wrapper -->
+</div><!-- .block-section-sm -->
