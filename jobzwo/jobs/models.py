@@ -1,12 +1,14 @@
 from django.db import models
 
+from impairments.models import AbstractImpairmentJob
+
 JOB_STATUS = (
     ('DRAFT', 'Draft'),
     ('ACTIVE', 'Active'),
     ('INACTIVE', 'Inactive'),
 )
 
-class Job(models.Model):
+class Job(AbstractImpairmentJob):
     title = models.CharField(max_length=254)
     description = models.TextField()
 

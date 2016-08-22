@@ -29,6 +29,7 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 INSTALLED_APPS = (
     'core',
+    'impairments',
     'jobs',
     'jobzwo',
 
