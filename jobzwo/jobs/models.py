@@ -2,13 +2,10 @@ from django.db import models
 
 from impairments.models import AbstractImpairmentJob
 
-JOB_STATUS = (
-    ('DRAFT', 'Draft'),
-    ('ACTIVE', 'Active'),
-    ('INACTIVE', 'Inactive'),
-)
+from .mixins import JobStatusMixin
+from .querysets import JobManager
 
-class Job(AbstractImpairmentJob):
+class Job(JobStatusMixin, AbstractImpairmentJob):
     title = models.CharField(max_length=254)
     description = models.TextField()
 
@@ -20,7 +17,10 @@ class Job(AbstractImpairmentJob):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    status = models.CharField(max_length=254, choices=JOB_STATUS)
+    status = models.CharField(max_length=254,
+                              choices=JobStatusMixin.CHOICES_STATUS)
+
+    objects = JobManager()
 
     def __str__(self):
         return ", ".join([
