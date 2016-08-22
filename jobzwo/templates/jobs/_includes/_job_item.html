@@ -6,7 +6,7 @@ job
   <div class="row">
     <div class="col-md-12">
       <h3 class="no-margin-top">
-        <a class="" href="{{ job.external_url }}">{{ job.title }}
+        <a class="" href="{{ job.get_log_external_url }}">{{ job.title }}
             <i class="fa fa-link color-white-mute font-1x"></i></a></h3>
       <h5>
         <a href="http://jobplanet.jegtheme.com/company/fast-company/"><span class="color-black">{{ job.company_name }}</span></a> 
@@ -15,7 +15,7 @@ job
 
       <div>
         <span class="color-white-mute">{{ job.created|timeuntil }}</span> – <!-- Login -->
-         <a class="send-email btn btn-theme btn-xs btn-default" href="mailto:{{ job.contact_mail }}">email</a>
+         <a class="send-email btn btn-theme btn-xs btn-default" href="{{ job.contact_mail_link }}">email</a>
       </div>
     </div>
   </div><!-- .row -->

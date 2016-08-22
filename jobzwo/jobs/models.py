@@ -1,9 +1,11 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from impairments.models import AbstractImpairmentJob
 
 from .mixins import JobStatusMixin
 from .querysets import JobManager
+
 
 class Job(JobStatusMixin, AbstractImpairmentJob):
     title = models.CharField(max_length=254)
@@ -27,3 +29,9 @@ class Job(JobStatusMixin, AbstractImpairmentJob):
             str(self.id) or '-',
             self.title or '-',
         ])
+
+    def contact_mail_link(self):
+        return 'mailto:{}'.format(self.contact_email)
+
+    def get_log_external_url(self):
+        return reverse('jobs_log_external', kwargs={'job_id': self.id, })
