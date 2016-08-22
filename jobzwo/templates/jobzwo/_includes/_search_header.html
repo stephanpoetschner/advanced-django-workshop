@@ -1,0 +1,42 @@
+{% comment %}
+search_url
+{% endcomment %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="logo text-center-sm">
+        <a href="https://{{ CURRENT_DOMAIN }}">
+          JOB.ZWO
+        </a>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <form class="form-search-list" action="{{ SEARCH_URL }}" method="get">
+        <div class="row">
+          <div class="col-sm-5 col-xs-6 ">
+            <div class="form-group">
+              <label class="color-white">What</label>
+              <input class="form-control" name="keyword" value=""
+                placeholder="job title, keywords or tags">
+            </div>
+          </div>
+          <div class="col-sm-5 col-xs-6 ">
+            <div class="form-group location-form">
+              <label class="color-white">Where</label>
+              <input class="form-control location-autocomplete" name="place" 
+                placeholder="preferred job location" 
+                value="" autocomplete="off">
+            </div>
+          </div>
+          <div class="col-sm-2 col-xs-12 ">
+            <div class="form-group">
+              <label class="hidden-xs">&nbsp;</label>
+              <button class="btn btn-block btn-theme  btn-success">Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div><!-- .row -->
+</div><!-- .container -->
