@@ -29,6 +29,8 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 INSTALLED_APPS = (
     'core',
+    'jobs',
+    'jobzwo',
 
     'debug_toolbar',
 
@@ -95,7 +97,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'jobzwo.wsgi.application'
 
 
 # Database
