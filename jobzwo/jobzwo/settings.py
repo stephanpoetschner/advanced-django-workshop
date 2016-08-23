@@ -106,14 +106,14 @@ WSGI_APPLICATION = 'jobzwo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.sqlite3',
 
-        'NAME': 'jobzwo',
-        'USER': 'jobzwo',
-        'PASSWORD': 'jobzwo',
-        'HOST': '127.0.0.1',
+        'NAME': 'jobzwo.sqlite',
+        #'USER': 'jobzwo',
+        #'PASSWORD': 'jobzwo',
+        #'HOST': '127.0.0.1',
 
-        'CONN_MAX_AGE': 500,
+        #'CONN_MAX_AGE': 500,
     }
 }
 
