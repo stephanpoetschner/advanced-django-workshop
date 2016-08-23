@@ -1,9 +1,9 @@
 Django==1.8
-gunicorn
-psycopg2
+#gunicorn
+#psycopg2
 
-requests
-Pillow
+#requests
+#Pillow
 pytz
 
 structlog
