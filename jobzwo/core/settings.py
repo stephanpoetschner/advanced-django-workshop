@@ -19,18 +19,19 @@ TESTING = (len(sys.argv) > 1 and sys.argv[1] == 'test')
 
 ALLOWED_HOSTS = []
 INTERNAL_IPS = [
-    '192.168.50.1'
+    '127.0.0.1'
 ]
 
-DEBUG_TOOLBAR_ENABLED = False
+DEBUG_TOOLBAR_ENABLED = True
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'core',
+    'jobzwo',
 
-    'debug_toolbar',
+    #'debug_toolbar',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,14 +39,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'core.middleware.ResponseTimeLoggingMiddleware',
     'core.middleware.StructLoggingMiddleware',
     'core.middleware.ExceptionLoggingMiddleware',
 
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'gitdebug_toolbar.middleware.DebugToolbarMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +56,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-)
+]
 
 
 if DEBUG_TOOLBAR_ENABLED:
@@ -101,6 +102,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -113,7 +123,7 @@ DATABASES = {
         'CONN_MAX_AGE': 500,
     }
 }
-
+"""
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
