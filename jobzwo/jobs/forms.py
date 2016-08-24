@@ -2,7 +2,17 @@ import floppyforms.__future__ as forms
 
 from .models import Job
 
-class JobForm(forms.ModelForm):
+class InputClassInsertionMixin(object):
+    def add_css_classes(self, fields, css_classes):
+        for field in fields.values():
+            attrs = field.widget.attrs
+            attrs['class'] = ' '.join(filter(None, [
+                attrs.get('class', '').strip(),
+                css_classes,
+            ]))
+
+
+class JobForm(InputClassInsertionMixin, forms.ModelForm):
     class Meta:
         model = Job
         fields = ['title', 'company_name',
@@ -13,6 +23,11 @@ class JobForm(forms.ModelForm):
                   'is_visual_impairment_accepted',
                   'is_hearing_impairment_accepted',
                   'is_motor_impairment_accepted', ]
+
+    def __init__(self, *args, **kwargs):
+        super(JobForm, self).__init__(*args, **kwargs)
+        self.add_css_classes(self.fields,
+                             'form-control input-lg')
 
     def clean(self):
         data = super(JobForm, self).clean()
