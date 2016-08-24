@@ -41,7 +41,7 @@ class JobForm(InputClassInsertionMixin, forms.ModelForm):
                 'At least one impairment must be active.')
 
 
-class SearchForm(forms.Form):
+class JobSearchForm(forms.Form):
     q = forms.CharField(
         label='What', required=False,
         widget=forms.TextInput(attrs={
@@ -86,3 +86,13 @@ class SearchForm(forms.Form):
             jobs = jobs.filter(**impairements_filter)
 
         return jobs
+
+
+class CompanySearchForm(forms.Form):
+    term = forms.CharField()
+    
+    def search(self, companies):
+        q = self.cleaned_data.get('term')
+        if q:
+            companies = companies.filter(name__icontains=q)
+        return companies
