@@ -29,3 +29,10 @@
   </div><!-- .row -->
 </div><!-- .container -->
 {% endblock %}
+
+{% block extra_js %}
+<script>
+  $(function () {
+    $('select').select2();
+</script>
+{% endblock %}
