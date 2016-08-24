@@ -17,6 +17,8 @@ Getting Started
 
 -   Run migrations (`./manage.py migrate`)
 
+-   Run data creation command (`./manage.py insert_jobs`)
+
 -   Run development server
 
         $ sudo /vagrant/.venvs/my_venv/bin/python /vagrant/jobzwo/manage.py runserver 0:80
