@@ -36,7 +36,7 @@ class Command(BaseCommand):
                 JobStatusTransitionMixin.STATUS_INACTIVE,
             ]),
 
-            #'company_name': company_name,
+            'company_name': company_name,
             'external_url': 'http://www.{}.com'.format(company_name.lower()),
             'contact_email': '{}@mailinator.com'.format(company_name.lower()),
         }

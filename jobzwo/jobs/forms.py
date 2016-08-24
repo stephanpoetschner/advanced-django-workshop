@@ -5,7 +5,8 @@ from .models import Job
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['title', 'description', 
+        fields = ['title', 'company_name',
+                  'description', 
                   'location', 
                   'external_url', 'contact_email', 
 

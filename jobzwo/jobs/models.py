@@ -9,6 +9,7 @@ from .querysets import JobQuerySet
 
 class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
     title = models.CharField(max_length=254)
+    company_name = models.CharField(max_length=254)
     description = models.TextField()
 
     location = models.CharField(max_length=254)
