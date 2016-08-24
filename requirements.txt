@@ -6,4 +6,6 @@ Django==1.8
 #Pillow
 pytz
 
+django-floppyforms
+
 structlog

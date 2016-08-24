@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'jobzwo',
 
     'debug_toolbar',
+    'floppyforms',
 
     'django.contrib.admin',
     'django.contrib.auth',

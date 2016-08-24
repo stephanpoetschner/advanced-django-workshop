@@ -40,7 +40,7 @@ def search(request, jobs):
 
     return render(request, 'jobs/listing.html', {
         'jobs': jobs,
-        'form': form,
+        'search_form': form,
     })
 
 

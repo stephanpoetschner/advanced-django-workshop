@@ -1,3 +1,5 @@
+{% load floppyforms %}
+
 {% comment %}
 search_url
 {% endcomment %}
@@ -15,7 +17,7 @@ search_url
 
       <form method="get">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ search_form }}
 
         <button type="submit">Search</button>
       </form>
