@@ -10,7 +10,8 @@ class JobForm(forms.ModelForm):
                   'external_url', 'contact_email', ]
 
 class SearchForm(forms.Form):
-    q = forms.CharField(label='Search', required=False)
+    q = forms.CharField(label='Title', required=False)
+    l = forms.CharField(label='Location', required=False)
 
     is_visual_impairment_accepted = forms.BooleanField(required=False)
     is_hearing_impairment_accepted = forms.BooleanField(required=False)
@@ -20,6 +21,10 @@ class SearchForm(forms.Form):
         q = self.cleaned_data.get('q')
         if q:
             jobs = jobs.filter(title__icontains=q)
+
+        l = self.cleaned_data.get('l')
+        if l:
+            jobs = jobs.filter(location__icontains=l)
 
         impairements_filter = {}
         for name in [ 'visual', 'hearing', 'motor' ]:
