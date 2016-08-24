@@ -26,14 +26,29 @@ class JobForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    q = forms.CharField(label='Title', required=False)
-    l = forms.CharField(label='Location', required=False)
+    q = forms.CharField(
+        label='What', required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'job title, keywords or tags',
+        }),
+    )
+    l = forms.CharField(
+        label='Where', required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'job title, keywords or tags',
+        }),
+    )
 
     is_visual_impairment_accepted = forms.BooleanField(
+        label='visual disabilities',
         required=False, initial=True)
     is_hearing_impairment_accepted = forms.BooleanField(
+        label='hearing disabilities',
         required=False, initial=True)
     is_motor_impairment_accepted = forms.BooleanField(
+        label='motor disabilities',
         required=False, initial=True)
 
     def search(self, jobs):

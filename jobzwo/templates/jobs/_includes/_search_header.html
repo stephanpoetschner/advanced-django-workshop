@@ -15,11 +15,41 @@ search_url
     </div>
     <div class="col-md-8">
 
-      <form method="get">
+      <form class="form-search-list" method="get">
         {% csrf_token %}
-        {{ search_form }}
+        {% form search_form using %}
 
-        <button type="submit">Search</button>
+          {% include "floppyforms/errors.html" %}
+
+          <div class="row">
+            <div class="col-sm-5 col-xs-6 ">
+              {% formrow form.q %}
+            </div>
+            <div class="col-sm-5 col-xs-6 ">
+              {% formrow form.l %}
+            </div>
+            <div class="col-sm-2 col-xs-12 ">
+              <div class="form-group">
+                <label class="hidden-xs">&nbsp;</label>
+                <button class="btn btn-block btn-theme btn-success">Search</button>
+              </div>
+            </div>
+          </div><!-- .row -->
+
+          <div class="row">
+            <div class="col-sm-4 col-xs-12 ">
+              {% formrow form.is_visual_impairment_accepted using "floppyforms/rows/bootstrap_checkbox.html" %}
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              {% formrow form.is_hearing_impairment_accepted using "floppyforms/rows/bootstrap_checkbox.html" %}
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              {% formrow form.is_motor_impairment_accepted using "floppyforms/rows/bootstrap_checkbox.html" %}
+            </div>
+          </div><!-- .row -->
+
+          {% for field in form.hidden_fields %}{% formfield field %}{% endfor %}
+        {% endform %}
       </form>
 
       <form class="form-search-list" method="get">
