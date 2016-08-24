@@ -5,10 +5,10 @@ from .models import Job
 from .querysets import JobStatusTransitionMixin
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ['title', 'status', ]
+    list_display = ['title', 'status', 'updated', ]
     actions = ['make_active', 'make_inactive', ]
 
-    readonly_fields = ('status',)
+    readonly_fields = ('status', )
 
     def make_active(self, request, queryset):
         for job in queryset:
