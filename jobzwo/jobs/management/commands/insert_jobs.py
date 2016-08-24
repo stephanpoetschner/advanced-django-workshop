@@ -40,8 +40,15 @@ class Command(BaseCommand):
             'external_url': 'http://www.{}.com'.format(company_name.lower()),
             'contact_email': '{}@mailinator.com'.format(company_name.lower()),
         }
+
+        impairments_sample = random.sample(['visual', 'hearing', 'motor', ],
+                                           random.randint(0, 3))
+        impairments = {}
+        for name in impairments_sample:
+            impairments['is_{}_impairment_accepted'.format(name)] = True
+        job.update(impairments)
+
         job.update(kwargs)
-        
         return job
 
     def add_arguments(self, parser):
