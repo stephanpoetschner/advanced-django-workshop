@@ -3,7 +3,7 @@ from .exceptions import JobStatusError, JobTransitionError
 from core.utils import getLogger
 log = getLogger(__name__)
 
-class JobStatusMixin(object):
+class JobStatusTransitionMixin(object):
     STATUS_DRAFT = 'DRAFT'
     STATUS_ACTIVE = 'ACTIVE'
     STATUS_INACTIVE = 'INACTIVE'

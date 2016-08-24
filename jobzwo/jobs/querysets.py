@@ -1,11 +1,11 @@
 from django.db import models
 
-from .mixins import JobStatusMixin
+from .mixins import JobStatusTransitionMixin
 
 class JobQuerySet(models.QuerySet):
     def only_active(self):
         qs = self
-        return qs.filter(status=JobStatusMixin.STATUS_ACTIVE)
+        return qs.filter(status=JobStatusTransitionMixin.STATUS_ACTIVE)
 
 
 class JobManager(models.Manager.from_queryset(JobQuerySet),

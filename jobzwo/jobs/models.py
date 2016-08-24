@@ -3,11 +3,11 @@ from django.db import models
 
 from impairments.models import AbstractImpairmentJob
 
-from .mixins import JobStatusMixin
+from .mixins import JobStatusTransitionMixin
 from .querysets import JobManager
 
 
-class Job(JobStatusMixin, AbstractImpairmentJob):
+class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
     title = models.CharField(max_length=254)
     description = models.TextField()
 
@@ -20,7 +20,7 @@ class Job(JobStatusMixin, AbstractImpairmentJob):
     created = models.DateTimeField(auto_now_add=True)
 
     status = models.CharField(max_length=254,
-                              choices=JobStatusMixin.CHOICES_STATUS)
+                              choices=JobStatusTransitionMixin.CHOICES_STATUS)
 
     objects = JobManager()
 
