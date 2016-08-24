@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 {% load floppyforms %}
 
 {% comment %}
@@ -6,13 +7,6 @@ search_url
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <div class="logo text-center-sm">
-        <a href="https://{{ CURRENT_DOMAIN }}">
-          JOB.ZWO
-        </a>
-      </div>
-    </div>
     <div class="col-md-8">
 
       <form class="form-search-list" method="get">
@@ -51,7 +45,17 @@ search_url
           {% for field in form.hidden_fields %}{% formfield field %}{% endfor %}
         {% endform %}
       </form>
+    </div>
 
+    <div class="col-md-4">
+      <div class="logo text-center-sm">
+        <a href="https://{{ CURRENT_DOMAIN }}">
+          <img src="{% static "images/logo.svg" %}" width="80" />
+        </a>
+        <br />
+        <a href="{% url "jobs_add" %}"
+            class="btn btn-block btn-theme btn-link">Create Job</a>
+      </div>
     </div>
   </div><!-- .row -->
 </div><!-- .container -->

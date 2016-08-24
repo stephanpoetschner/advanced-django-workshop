@@ -8,7 +8,7 @@ id_patterns = {
 }
 
 urlpatterns = [
-    url(r'^add/$', views.edit, name='jobs_edit'),
+    url(r'^add/$', views.edit, name='jobs_add'),
     url(r'^edit/{job_id}/$'.format(**id_patterns), views.edit, name='jobs_edit'),
 
     url(r'^$', views.search, name='jobs_search'),
