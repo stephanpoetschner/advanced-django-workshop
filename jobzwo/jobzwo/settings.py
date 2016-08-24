@@ -22,12 +22,11 @@ INTERNAL_IPS = [
     '192.168.50.1'
 ]
 
-DEBUG_TOOLBAR_ENABLED = False
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'core',
     'impairments',
     'jobs',
@@ -41,9 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'core.middleware.ResponseTimeLoggingMiddleware',
     'core.middleware.StructLoggingMiddleware',
     'core.middleware.ExceptionLoggingMiddleware',
@@ -58,18 +57,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-)
-
-
-if DEBUG_TOOLBAR_ENABLED:
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
-
-    MIDDLEWARE_CLASSES += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
-
+]
 
 ROOT_URLCONF = 'jobzwo.urls'
 
