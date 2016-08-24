@@ -154,6 +154,9 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
+GOOGLE_GEOCODE_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
+GOOGLE_API_KEY = 'XXXX'
+
 LOGGING_PREFIX = 'jobzwo.'
 
 # Logging

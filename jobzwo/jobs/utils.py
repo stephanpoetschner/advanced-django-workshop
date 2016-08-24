@@ -1,8 +1,19 @@
 from datetime import date, timedelta
 
+from django.conf import settings
+from django.core.mail.message import EmailMultiAlternatives
 from django.utils import timezone, dateparse
 
+from core.utils import getLogger
+log = getLogger(__name__)
+
 def sanitize_datespan(since, to, max_days=None, parse_date=None):
+    """
+    given two dates (as strings) return two valid date-objects or
+    raise ValueError.
+
+    sanitize_datespan('2014-10-30', '2014-10-30')
+    """
     if not parse_date:
         parse_date = dateparse.parse_date
 
@@ -35,3 +46,27 @@ def sanitize_datespan(since, to, max_days=None, parse_date=None):
 
     return tuple(args)
 
+
+def send_mail(subject, message, from_email=None, reply_to=None,
+              recipient_list=None, html_message=None):
+    """
+    send html email, instead of plain-text.
+    """
+
+    if not recipient_list:
+        return
+
+    if not from_email:
+        from_email = settings.CONTACT_EMAIL
+
+    mail = EmailMultiAlternatives(subject, message, from_email, recipient_list,
+                                  reply_to=reply_to)
+    if html_message:
+        mail.attach_alternative(html_message, 'text/html')
+
+    log.info('Sending email',
+             from_email=from_email,
+             recipients=recipient_list,
+             subject=subject)
+
+    return mail.send()
