@@ -4,7 +4,7 @@ from django.db import models
 from impairments.models import AbstractImpairmentJob
 
 from .mixins import JobStatusTransitionMixin
-from .querysets import JobManager
+from .querysets import JobQuerySet
 
 
 class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
@@ -19,10 +19,12 @@ class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    status = models.CharField(max_length=254, editable=False,
+    status = models.CharField(max_length=254,
+                              editable=False,
+                              default=JobStatusTransitionMixin.STATUS_DRAFT,
                               choices=JobStatusTransitionMixin.CHOICES_STATUS)
 
-    objects = JobManager()
+    objects = JobQuerySet.as_manager()
 
     def __str__(self):
         return ", ".join([

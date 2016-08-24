@@ -1,8 +1,8 @@
-class Error(Exception):
+class JobError(Exception):
     pass
 
 
-class JobStatusError(Error):
+class JobStatusError(JobError):
     """Exception raised when the current state is illegal."""
     def __init__(self, message, job, current):
         self.message = message
@@ -13,7 +13,7 @@ class JobStatusError(Error):
         return self.message
 
 
-class JobTransitionError(Error):
+class JobTransitionError(JobError):
     """Exception raised when an application tries attempts to change
     status into illegal for current one.
 
