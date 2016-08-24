@@ -7,15 +7,34 @@ class JobForm(forms.ModelForm):
         model = Job
         fields = ['title', 'description', 
                   'location', 
-                  'external_url', 'contact_email', ]
+                  'external_url', 'contact_email', 
+
+                  'is_visual_impairment_accepted',
+                  'is_hearing_impairment_accepted',
+                  'is_motor_impairment_accepted', ]
+
+    def clean(self):
+        data = super(JobForm, self).clean()
+
+        if not any([
+            data['is_visual_impairment_accepted'],
+            data['is_hearing_impairment_accepted'],
+            data['is_motor_impairment_accepted'],
+        ]):
+            raise forms.ValidationError(
+                'At least one impairment must be active.')
+
 
 class SearchForm(forms.Form):
     q = forms.CharField(label='Title', required=False)
     l = forms.CharField(label='Location', required=False)
 
-    is_visual_impairment_accepted = forms.BooleanField(required=False)
-    is_hearing_impairment_accepted = forms.BooleanField(required=False)
-    is_motor_impairment_accepted = forms.BooleanField(required=False)
+    is_visual_impairment_accepted = forms.BooleanField(
+        required=False, initial=True)
+    is_hearing_impairment_accepted = forms.BooleanField(
+        required=False, initial=True)
+    is_motor_impairment_accepted = forms.BooleanField(
+        required=False, initial=True)
 
     def search(self, jobs):
         q = self.cleaned_data.get('q')
