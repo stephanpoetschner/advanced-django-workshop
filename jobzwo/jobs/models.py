@@ -7,9 +7,16 @@ from .mixins import JobStatusTransitionMixin
 from .querysets import JobQuerySet
 
 
+class Company(models.Model):
+    name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
+
+
 class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
     title = models.CharField(max_length=254)
-    company_name = models.CharField(max_length=254)
+    company = models.ForeignKey('jobs.Company')
     description = models.TextField()
 
     location = models.CharField(max_length=254)

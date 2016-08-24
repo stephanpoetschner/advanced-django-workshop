@@ -1,12 +1,13 @@
 import random
 
 from django.core.management.base import BaseCommand, CommandError
-from jobs.models import Job
+from jobs.models import Job, Company
 from jobs.mixins import JobStatusTransitionMixin
 
 class Command(BaseCommand):
     DEFAULT_NR_JOBS = 10
-    
+    COMPANIES = ['Microsoft', 'Yahoo', 'Google', ]
+
     @classmethod
     def _lorem_ipsum(cls):
         return """
@@ -20,11 +21,18 @@ class Command(BaseCommand):
         in leo ullamcorper cursus. In sit amet magna eget lacus aliquam 
         fermentum.
         """
-    
+
     @classmethod
-    def _job_data(self, **kwargs):
+    def _company_data(cls, **kwargs):
+        company = {
+            'name': random.choice(cls.COMPANIES),
+        }
+        company.update(kwargs)
+        return company
+
+    @classmethod
+    def _job_data(cls, company, **kwargs):
         technology = random.choice(['Java', 'Python', 'Django', 'Javascript', ])
-        company_name = random.choice(['Microsoft', 'Yahoo', 'Google', ])
 
         job = {
             'title': '{} Developer'.format(technology),
@@ -36,9 +44,9 @@ class Command(BaseCommand):
                 JobStatusTransitionMixin.STATUS_INACTIVE,
             ]),
 
-            'company_name': company_name,
-            'external_url': 'http://www.{}.com'.format(company_name.lower()),
-            'contact_email': '{}@mailinator.com'.format(company_name.lower()),
+            'company': company,
+            'external_url': 'http://www.{}.com'.format(company.name.lower()),
+            'contact_email': '{}@mailinator.com'.format(company.name.lower()),
         }
 
         job.update(kwargs)
@@ -46,12 +54,23 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         self.DEFAULT_NR_JOBS
-        parser.add_argument('-i', '--instances',
+        parser.add_argument('-j', '--jobs',
                             dest='nr_jobs', default=self.DEFAULT_NR_JOBS, 
                             type=int)
 
     def handle(self, *args, **options):
+        company_names = list(
+            Company.objects.values_list('name', flat=True).distinct()
+        )
+        for company_name in self.COMPANIES:
+            if company_name not in company_names:
+                company = Company.objects.create(
+                    **Command._company_data(name=company_name))
+
+        companies = Company.objects.all()
         for _ in range(options['nr_jobs']):
-            job = Job.objects.create(**Command._job_data())
+            selected_company = random.choice(companies)
+            job = Job.objects.create(
+                **Command._job_data(company=selected_company))
             
             self.stdout.write('\tCreating job ({}).'.format(job))

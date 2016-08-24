@@ -15,7 +15,7 @@ class InputClassInsertionMixin(object):
 class JobForm(InputClassInsertionMixin, forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['title', 'company_name',
+        fields = ['title', 'company',
                   'description', 
                   'location', 
                   'external_url', 'contact_email', 
