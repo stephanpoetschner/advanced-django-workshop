@@ -8,3 +8,12 @@ class JobForm(forms.ModelForm):
         fields = ['title', 'description', 
                   'location', 
                   'external_url', 'contact_email', ]
+
+class SearchForm(forms.Form):
+    q = forms.CharField(label='Search', required=False)
+
+    def search(self, jobs):
+        q = self.cleaned_data.get('q')
+        if q:
+            jobs = jobs.filter(title__icontains=q)
+        return jobs

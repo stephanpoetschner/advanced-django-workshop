@@ -3,7 +3,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 
 from .decorators import apply_jobs
-from .forms import JobForm
+from .forms import JobForm, SearchForm
 from .models import Job
 
 from core.utils import getLogger
@@ -23,7 +23,7 @@ def edit(request, jobs, job_id=None):
                    instance=job)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('jobs_query'))
+        return HttpResponseRedirect(reverse('jobs_search'))
 
     return render(request, 'jobs/edit.html', {
         'form': form,
@@ -31,11 +31,16 @@ def edit(request, jobs, job_id=None):
 
 
 @apply_jobs
-def query(request, jobs):
+def search(request, jobs):
     jobs = jobs.order_by('-updated')
+
+    form = SearchForm(request.GET or None)
+    if form.is_valid():
+        jobs = form.search(jobs)
 
     return render(request, 'jobs/listing.html', {
         'jobs': jobs,
+        'form': form,
     })
 
 
