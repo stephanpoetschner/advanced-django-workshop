@@ -19,7 +19,7 @@ class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    status = models.CharField(max_length=254,
+    status = models.CharField(max_length=254, editable=False,
                               choices=JobStatusTransitionMixin.CHOICES_STATUS)
 
     objects = JobManager()
