@@ -1,0 +1,11 @@
+{% load static from staticfiles %}
+
+<div class="logo text-center-sm">
+  <a href="http://{{ CURRENT_DOMAIN }}">
+    <img src="{% static "images/logo.svg" %}" width="80" />
+  </a>
+  <br />
+  <a href="{% url "jobs_add" %}"
+      class="btn btn-block btn-theme btn-link">Create Job</a>
+</div>
+

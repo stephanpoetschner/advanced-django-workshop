@@ -1,11 +1,15 @@
-{% extends "_base.html" %}
+{% extends "jobs/_base.html" %}
 
-{% block content %}
+{% block content_header %}
   {% include "jobs/_includes/_search_header.html" %}
-  
+{% endblock %}
+
+{% block content_main %}
   <div class="container">
-    <div class="col-md-12">
-    {% include "jobs/_includes/_job_listing.html" with jobs=jobs %}
+    <div class="col-md-8">
+      {% include "jobs/_includes/_job_listing.html" with jobs=jobs %}
     </div>
+    <div class="col-md-4">&nbsp;</div>
+
   </div><!-- .container -->
 {% endblock %}

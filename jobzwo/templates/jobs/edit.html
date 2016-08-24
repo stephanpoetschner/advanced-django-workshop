@@ -1,11 +1,22 @@
-{% extends "_base.html" %}
+{% extends "jobs/_base.html" %}
 
-{% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
+{% block content_header %}
+  {{ block.super }}
+{% endblock %}
 
-  <button type="submit">Save</button>
-  <button type="reset">Reset</button>
-</form>
+{% block content_main %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+
+        <button type="submit">Save</button>
+        <button type="reset">Reset</button>
+      </form>
+    </div>
+  </div><!-- .row -->
+</div><!-- .container -->
 {% endblock %}
