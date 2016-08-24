@@ -26,7 +26,7 @@ def edit(request, jobs, job_id=None):
         return HttpResponseRedirect(reverse('jobs_search'))
 
     return render(request, 'jobs/edit.html', {
-        'form': form,
+        'add_form': form,
     })
 
 
