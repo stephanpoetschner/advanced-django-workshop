@@ -1,6 +1,9 @@
 import mock
 
-from django.test import SimpleTestCase, TestCase
+import responses
+
+from django.conf import settings
+from django.test import SimpleTestCase, TestCase, override_settings
 
 from .utils import geocode, rm
 from .test_data import geocode_success_response
@@ -25,8 +28,28 @@ class RmTest(SimpleTestCase):
 
 
 class GeocodeTest(SimpleTestCase):
+    @responses.activate
     def test_success(self):
+        with responses.RequestsMock() as rsps:
+            rsps.add(responses.GET, settings.GOOGLE_GEOCODE_API_URL,
+                     body=geocode_success_response, status=200,
+                     content_type='application/json')
+
+            retval = geocode('Wien')
+
+            self.assertTrue('status' in retval)
+            self.assertEqual('OK', retval['status'])
+
+    @override_settings(GOOGLE_API_KEY='YYYY',
+                       GOOGLE_GEOCODE_API_URL='http://not-google.com/api/')
+    @mock.patch('testing_sandbox.utils.requests')
+    def test_api_key(self, mock_requests):
+        mock_requests.json.return_value = {}
+
         retval = geocode('Wien')
 
-        self.assertTrue('status' in retval)
-        self.assertEqual('OK', retval['status'])
+        mock_requests.get.assert_called_with('http://not-google.com/api/',
+                                             params={
+                                                 'address': 'Wien',
+                                                 'key': 'YYYY',
+                                             })
