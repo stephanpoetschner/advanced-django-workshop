@@ -44,13 +44,13 @@ class SearchForm(forms.Form):
 
     is_visual_impairment_accepted = forms.BooleanField(
         label='visual disabilities',
-        required=False, initial=True)
+        required=False, initial=False)
     is_hearing_impairment_accepted = forms.BooleanField(
         label='hearing disabilities',
-        required=False, initial=True)
+        required=False, initial=False)
     is_motor_impairment_accepted = forms.BooleanField(
         label='motor disabilities',
-        required=False, initial=True)
+        required=False, initial=False)
 
     def search(self, jobs):
         q = self.cleaned_data.get('q')
