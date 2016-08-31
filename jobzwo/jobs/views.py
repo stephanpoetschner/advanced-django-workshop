@@ -3,7 +3,7 @@ from django.http import JsonResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 
 from .decorators import apply_jobs
-from .forms import JobForm, JobSearchForm, CompanySearchForm
+from .forms import JobForm, JobSearchForm
 from .models import Company, Job
 
 from core.utils import getLogger
@@ -54,28 +54,3 @@ def log_external_url(request, jobs, job_id):
     log.info('External-link clicked', job=job)
 
     return HttpResponseRedirect(job.external_url)
-
-
-def json_companies(request):
-    companies = Company.objects.all()
-
-    form = CompanySearchForm(request.GET or None)
-    term = ''
-
-    if form.is_valid():
-        companies = form.search(companies)
-        term = form.cleaned_data.get('term')
-
-    company_names = companies.values('id', 'name') \
-        .distinct().order_by('name')
-
-    # map return objects to interface expected by select2
-    company_names = map(lambda x: {
-        'id': x['id'],
-        'text': x['name'],
-    }, company_names)
-
-    return JsonResponse({
-        'term': term,
-        'results': list(company_names),
-    })

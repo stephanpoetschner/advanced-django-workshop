@@ -32,7 +32,7 @@ class JobForm(InputClassInsertionMixin, forms.ModelForm):
 
         attrs = self.fields['company'].widget.attrs
         attrs.update({
-            'data-api-url': reverse('jobs_json_companies'),
+            'data-api-url': reverse('api_companies'),
         })
         self.fields['location'].attrs = attrs
 
@@ -96,13 +96,3 @@ class JobSearchForm(forms.Form):
             jobs = jobs.filter(**impairements_filter)
 
         return jobs
-
-
-class CompanySearchForm(forms.Form):
-    term = forms.CharField()
-
-    def search(self, companies):
-        q = self.cleaned_data.get('term')
-        if q:
-            companies = companies.filter(name__icontains=q)
-        return companies

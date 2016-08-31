@@ -1,16 +1,10 @@
 from django.conf import settings
 from django.conf.urls import include, url
 
-from rest_framework import routers
-
-from .views import UserViewSet
-
-# Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+from .views import CompanyView
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^companies/', CompanyView.as_view(), name='api_companies'),
 
     # restframework browsable-api
     url(r'^api-auth/', include('rest_framework.urls', 
