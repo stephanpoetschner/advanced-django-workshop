@@ -4,6 +4,6 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     url(r'', include('core.urls')),
-    url(r'', include('api.urls')),
+    url(r'api/', include('api.urls')),
     url(r'', include('jobs.urls')),
 ]
