@@ -60,14 +60,22 @@ def json_companies(request):
     companies = Company.objects.all()
     
     form = CompanySearchForm(request.GET or None)
+    term = ''
 
     if form.is_valid():
         companies = form.search(companies)
+        term = form.cleaned_data.get('term')
 
-    company_names = companies.values_list('name', flat=True) \
+    company_names = companies.values('id', 'name') \
         .distinct().order_by('name')
 
+    # map return objects to interface expected by select2
+    company_names = map(lambda x: {
+        'id': x['id'],
+        'text': x['name'],
+    }, company_names)
+
     return JsonResponse({
-        'term': form.cleaned_data.get('term'),
+        'term': term,
         'results': list(company_names),
     })
