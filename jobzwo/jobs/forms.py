@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 import floppyforms.__future__ as forms
 
 from .models import Job
@@ -26,6 +28,13 @@ class JobForm(InputClassInsertionMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(JobForm, self).__init__(*args, **kwargs)
+
+        attrs = self.fields['company'].widget.attrs
+        attrs.update({
+            'data-api-url': reverse('jobs_json_companies'),
+        })
+        self.fields['location'].attrs = attrs
+
         self.add_css_classes(self.fields,
                              'form-control input-lg')
 

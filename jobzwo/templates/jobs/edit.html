@@ -33,11 +33,16 @@
 {% block extra_js %}
 <script>
   $(function () {
-    $('select').select2({
-      debug: true,
-      ajax: {
-        url: '{% url "jobs_json_companies" %}',
-      }
+    $('select').each(function() {
+      var select_input = $(this);
+      var target_url = select_input.data('apiUrl');
+
+      select_input.select2({
+        debug: true,
+        ajax: {
+          url: target_url
+        }
+      });
     });
   });
 </script>
