@@ -1,5 +1,6 @@
 import structlog
 
+
 def setup_structlog():
     structlog.configure(
         processors=[
@@ -9,7 +10,7 @@ def setup_structlog():
             structlog.stdlib.PositionalArgumentsFormatter(),
             structlog.processors.StackInfoRenderer(),
             structlog.processors.format_exc_info,
-            
+
             structlog.processors.KeyValueRenderer(
                 key_order=['event', 'path', 'method', 'logger', 'level',
                            'client_ip', 'request_id', ],

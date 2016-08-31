@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class AbstractImpairmentJob(models.Model):
     is_visual_impairment_accepted = models.BooleanField(default=True)
     is_hearing_impairment_accepted = models.BooleanField(default=True)

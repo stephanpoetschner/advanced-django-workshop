@@ -76,10 +76,10 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
                 'django.template.context_processors.request',
-                
+
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
                 'core.context_processors.contact_email',
                 'core.context_processors.site_url',
             ],
@@ -98,11 +98,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
 
         'NAME': 'jobzwo.sqlite',
-        #'USER': 'jobzwo',
-        #'PASSWORD': 'jobzwo',
-        #'HOST': '127.0.0.1',
-
-        #'CONN_MAX_AGE': 500,
     }
 }
 
@@ -179,7 +174,7 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['console',],
+            'handlers': ['console'],
             'level': 'INFO',
         },
         'py.warnings': {

@@ -3,6 +3,7 @@ from django.conf import settings
 
 from django.contrib.sites.shortcuts import get_current_site
 
+
 def site_url(request):
     current_site = get_current_site(request)
     current_site.domain

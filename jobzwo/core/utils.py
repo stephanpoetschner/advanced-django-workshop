@@ -13,4 +13,3 @@ def getLogger(name):
 class RequireTestingFalse(logging.Filter):
     def filter(self, record):
         return not settings.TESTING
-

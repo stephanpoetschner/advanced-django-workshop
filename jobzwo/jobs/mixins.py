@@ -3,6 +3,7 @@ from .exceptions import JobStatusError, JobTransitionError
 from core.utils import getLogger
 log = getLogger(__name__)
 
+
 class JobStatusTransitionMixin(object):
     STATUS_DRAFT = 'DRAFT'
     STATUS_ACTIVE = 'ACTIVE'
@@ -21,7 +22,7 @@ class JobStatusTransitionMixin(object):
     }
 
     def transition(self, target, commit=True):
-        if not self.status in self.ALLOWED_TRANSITIONS:
+        if self.status not in self.ALLOWED_TRANSITIONS:
             raise JobStatusError('Job.status in invalid state',
                                  job=self,
                                  current=self.status)
@@ -39,4 +40,3 @@ class JobStatusTransitionMixin(object):
 
         if commit:
             self.save()
-

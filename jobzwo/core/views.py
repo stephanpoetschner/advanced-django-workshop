@@ -3,8 +3,8 @@ from django.http import Http404
 from django.core.exceptions import PermissionDenied
 
 from core.utils import getLogger
-
 log = getLogger(__name__)
+
 
 def raise400(request):
     raise Http404("404 – Not found")

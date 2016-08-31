@@ -4,6 +4,7 @@ import floppyforms.__future__ as forms
 
 from .models import Job
 
+
 class InputClassInsertionMixin(object):
     def add_css_classes(self, fields, css_classes):
         for field in fields.values():
@@ -18,9 +19,9 @@ class JobForm(InputClassInsertionMixin, forms.ModelForm):
     class Meta:
         model = Job
         fields = ['title', 'company',
-                  'description', 
-                  'location', 
-                  'external_url', 'contact_email', 
+                  'description',
+                  'location',
+                  'external_url', 'contact_email',
 
                   'is_visual_impairment_accepted',
                   'is_hearing_impairment_accepted',
@@ -86,7 +87,7 @@ class JobSearchForm(forms.Form):
             jobs = jobs.filter(location__icontains=l)
 
         impairements_filter = {}
-        for name in [ 'visual', 'hearing', 'motor' ]:
+        for name in ['visual', 'hearing', 'motor', ]:
             impairment = 'is_{}_impairment_accepted'.format(name)
             value = self.cleaned_data.get(impairment)
             if value:
@@ -99,7 +100,7 @@ class JobSearchForm(forms.Form):
 
 class CompanySearchForm(forms.Form):
     term = forms.CharField()
-    
+
     def search(self, companies):
         q = self.cleaned_data.get('term')
         if q:

@@ -58,7 +58,7 @@ def log_external_url(request, jobs, job_id):
 
 def json_companies(request):
     companies = Company.objects.all()
-    
+
     form = CompanySearchForm(request.GET or None)
     term = ''
 

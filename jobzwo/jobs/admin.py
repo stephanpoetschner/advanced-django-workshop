@@ -4,6 +4,7 @@ from .exceptions import JobStatusError, JobTransitionError
 from .models import Job
 from .querysets import JobStatusTransitionMixin
 
+
 class JobAdmin(admin.ModelAdmin):
     list_display = ['title', 'status', 'updated', ]
     actions = ['make_active', 'make_inactive', ]
@@ -30,4 +31,3 @@ class JobAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Job, JobAdmin)
-

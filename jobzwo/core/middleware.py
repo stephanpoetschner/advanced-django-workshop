@@ -8,6 +8,7 @@ from django.utils import timezone
 from core.utils import getLogger
 log = getLogger(__name__)
 
+
 class StructLoggingMiddleware(object):
     def process_request(self, request):
         request.request_id = uuid.uuid4()
