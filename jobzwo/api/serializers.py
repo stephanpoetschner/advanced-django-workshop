@@ -7,7 +7,7 @@ class CompanySearchSerializer(serializers.Serializer):
     term = serializers.CharField()
 
     def search(self, companies):
-        q = self.cleaned_data.get('term')
+        q = self.validated_data.get('term')
         if q:
             companies = companies.filter(name__icontains=q)
         return companies
@@ -16,3 +16,8 @@ class CompanySearchSerializer(serializers.Serializer):
 class CompanyNameSerializer(serializers.Serializer):
     id = serializers.CharField()
     text = serializers.CharField()
+
+
+class CompanySerializer(serializers.Serializer):
+    term = serializers.CharField(allow_blank=True)
+    results = CompanyNameSerializer(many=True)

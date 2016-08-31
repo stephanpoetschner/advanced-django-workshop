@@ -1,14 +1,21 @@
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import views
 
 from jobs.models import Company
 
-from .serializers import CompanyNameSerializer
+from .serializers import CompanySerializer, CompanySearchSerializer
 
 
 class CompanyView(views.APIView):
     def get(self, request):
         companies = Company.objects.all()
+
+        term = ''
+        search_serializer = CompanySearchSerializer(data=request.query_params)
+        if search_serializer.is_valid():
+            companies = search_serializer.search(companies)
+            term = search_serializer.validated_data.get('term')
 
         company_names = companies.values('id', 'name') \
             .distinct().order_by('name')
@@ -19,6 +26,11 @@ class CompanyView(views.APIView):
             'text': x['name'],
         }, company_names)
 
-        serializer = CompanyNameSerializer(company_names, many=True)
-
-        return Response(serializer.data)
+        serializer = CompanySerializer(data={
+            'term': term,
+            'results': list(company_names),
+        })
+        if serializer.is_valid():
+            return Response(serializer.data)
+        return Response(serializer.errors,
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
