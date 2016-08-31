@@ -2,7 +2,9 @@ Django==1.8
 #gunicorn
 #psycopg2
 
-#requests
+requests
+responses
+
 #Pillow
 pytz
 

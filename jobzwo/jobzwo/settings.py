@@ -141,6 +141,9 @@ MANAGERS = ADMINS
 
 LOGGING_PREFIX = 'jobzwo.'
 
+GOOGLE_GEOCODE_API_URL = 'https://maps.googleapis.com/maps/api/geocode/js'
+GOOGLE_API_KEY = 'XXX'
+
 # Logging
 setup_structlog()
 

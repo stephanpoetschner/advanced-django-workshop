@@ -1,0 +1,4 @@
+class GeocodeError(Exception):
+    pass
+
+

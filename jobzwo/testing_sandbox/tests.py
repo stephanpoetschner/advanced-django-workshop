@@ -2,7 +2,8 @@ import mock
 
 from django.test import SimpleTestCase, TestCase
 
-from .utils import rm
+from .utils import geocode, rm
+from .test_data import geocode_success_response
 
 
 class RmTest(SimpleTestCase):
@@ -21,3 +22,11 @@ class RmTest(SimpleTestCase):
         mock_path.isfile.return_value = True
         rm("/exists")
         mock_os.remove.assert_called_with("/exists")
+
+
+class GeocodeTest(SimpleTestCase):
+    def test_success(self):
+        retval = geocode('Wien')
+
+        self.assertTrue('status' in retval)
+        self.assertEqual('OK', retval['status'])
