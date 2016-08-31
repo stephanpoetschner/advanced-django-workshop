@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'impairments',
     'jobs',
     'jobzwo',
+    'testing_sandbox',
 
     'debug_toolbar',
     'floppyforms',
