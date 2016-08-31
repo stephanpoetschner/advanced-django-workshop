@@ -8,6 +8,7 @@ responses
 #Pillow
 pytz
 
+djangorestframework
 django-floppyforms
 
 structlog

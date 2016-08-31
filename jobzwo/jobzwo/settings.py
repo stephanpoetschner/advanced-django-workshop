@@ -27,6 +27,7 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # Application definition
 
 INSTALLED_APPS = [
+    'api',
     'core',
     'impairments',
     'jobs',
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'floppyforms',
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -90,6 +92,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'jobzwo.wsgi.application'
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
