@@ -26,8 +26,10 @@ class JobForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    q = forms.CharField(label='Title', required=False)
-    l = forms.CharField(label='Location', required=False)
+    q = forms.CharField(
+        label='What', required=False
+        )
+    l = forms.CharField(label='Where', required=False)
 
     is_visual_impairment_accepted = forms.BooleanField(
         required=False, initial=True)
@@ -35,6 +37,8 @@ class SearchForm(forms.Form):
         required=False, initial=True)
     is_motor_impairment_accepted = forms.BooleanField(
         required=False, initial=True)
+
+
 
     def search(self, jobs):
         q = self.cleaned_data.get('q')

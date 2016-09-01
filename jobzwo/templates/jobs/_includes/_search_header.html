@@ -1,73 +1,117 @@
 {% load floppyforms %}
 
 {% comment %}
-search_url
+    search_url
 {% endcomment %}
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="logo text-center-sm">
-        <a href="https://{{ CURRENT_DOMAIN }}">
-          JOB.ZWO
-        </a>
-      </div>
-    </div>
-    <div class="col-md-8">
-
-      <form method="get">
-        {% csrf_token %}
-        {{ search_form }}
-
-        <button type="submit">Search</button>
-      </form>
-
-      <form class="form-search-list" method="get">
-        <div class="row">
-          <div class="col-sm-5 col-xs-6 ">
-            <div class="form-group">
-              <label class="color-white">What</label>
-              <input class="form-control" name="keyword" value=""
-                placeholder="job title, keywords or tags">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="logo text-center-sm">
+                <a href="https://{{ CURRENT_DOMAIN }}">
+                    JOB.ZWO
+                </a>
             </div>
-          </div>
-          <div class="col-sm-5 col-xs-6 ">
-            <div class="form-group location-form">
-              <label class="color-white">Where</label>
-              <input class="form-control location-autocomplete" name="place" 
-                placeholder="preferred job location" 
-                value="" autocomplete="off">
-            </div>
-          </div>
-          <div class="col-sm-2 col-xs-12 ">
-            <div class="form-group">
-              <label class="hidden-xs">&nbsp;</label>
-              <button class="btn btn-block btn-theme  btn-success">Search</button>
-            </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 ">
-            <strong>Filter jobs for </strong>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="checkbox">
-              <label><input type="checkbox"> visual disabilities</label>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="checkbox">
-              <label><input type="checkbox"> hearing disabilities</label>
-            </div>
-          </div>
-          <div class="col-sm-4 col-xs-12">
-            <div class="checkbox">
-              <label><input type="checkbox"> motor disabilities</label>
-            </div>
-          </div>
-        </div>
-      </form>
+        <div class="col-md-8">
 
-    </div>
-  </div><!-- .row -->
+            <form method="get">
+                {% csrf_token %}
+                {% form search_form using %}
+
+                <div class="row">
+                    <div class="col-sm-5 col-xs-6 ">
+
+                        {%  formrow form.q %}
+
+
+                    </div>
+
+
+                    <div class="col-sm-5 col-xs-6 ">
+
+                        {%  formrow form.l %}
+
+                    </div>
+
+                <div class="col-sm-2 col-xs-12 ">
+                        <div class="form-group">
+                            <label class="hidden-xs">&nbsp;</label>
+                            <button class="btn btn-block btn-theme  btn-success">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+                     <div class="row">
+                    <div class="col-xs-12 ">
+                        <strong>Filter jobs for </strong>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        {%  formrow form.is_visual_impairment_accepted %}
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        {%  formrow form.is_hearing_impairment_accepted %}
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        {%  formrow form.is_motor_impairment_accepted %}
+                    </div>
+                    </div>
+
+                {% endform %}
+
+
+            </form>
+
+
+
+
+
+            <form class="form-search-list" method="get">
+                <div class="row">
+                    <div class="col-sm-5 col-xs-6 ">
+                        <div class="form-group">
+                            <label class="color-white">What</label>
+                            <input class="form-control" name="keyword" value=""
+                                   placeholder="job title, keywords or tags">
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-xs-6 ">
+                        <div class="form-group location-form">
+                            <label class="color-white">Where</label>
+                            <input class="form-control location-autocomplete" name="place"
+                                   placeholder="preferred job location"
+                                   value="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-xs-12 ">
+                        <div class="form-group">
+                            <label class="hidden-xs">&nbsp;</label>
+                            <button class="btn btn-block btn-theme  btn-success">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <strong>Filter jobs for </strong>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> visual disabilities</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> hearing disabilities</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> motor disabilities</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div><!-- .row -->
 </div><!-- .container -->
