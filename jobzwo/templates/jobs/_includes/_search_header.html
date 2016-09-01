@@ -12,12 +12,12 @@ search_url
       </div>
     </div>
     <div class="col-md-8">
-      <form class="form-search-list" action="{{ SEARCH_URL }}" method="get">
+      <form class="form-search-list" action="{%  url 'jobs_query' %}" method="get" accept-charset="utf-8">
         <div class="row">
           <div class="col-sm-5 col-xs-6 ">
             <div class="form-group">
               <label class="color-white">What</label>
-              <input class="form-control" name="keyword" value=""
+              <input class="form-control" name="q" value=""
                 placeholder="job title, keywords or tags">
             </div>
           </div>

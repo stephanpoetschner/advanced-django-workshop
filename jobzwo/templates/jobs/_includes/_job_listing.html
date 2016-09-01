@@ -5,7 +5,7 @@ jobs
 <div class="block-section-sm box-list-area filter-content">
   <div class="box-list-wrapper">
     <div class="box-list">
-      {% for job in jobs %}
+      {% for job in job %}
         {% include "jobs/_includes/_job_item.html" with job=job %}
       {% endfor %}
     </div><!-- .box-list -->
