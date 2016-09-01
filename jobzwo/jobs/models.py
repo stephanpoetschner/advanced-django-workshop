@@ -5,6 +5,8 @@ from impairments.models import AbstractImpairmentJob
 
 from .mixins import JobStatusTransitionMixin
 from .querysets import JobManager
+from django.core.urlresolvers import reverse
+
 
 
 class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
@@ -20,7 +22,7 @@ class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
     created = models.DateTimeField(auto_now_add=True)
 
     status = models.CharField(max_length=254,
-                              choices=JobStatusTransitionMixin.CHOICES_STATUS)
+                              choices=JobStatusTransitionMixin.CHOICES_STATUS, default=JobStatusTransitionMixin.STATUS_DRAFT)
 
     objects = JobManager()
 
@@ -35,3 +37,7 @@ class Job(JobStatusTransitionMixin, AbstractImpairmentJob):
 
     def get_log_external_url(self):
         return reverse('jobs_log_external', kwargs={'job_id': self.id, })
+
+    def get_absolute_url(self):
+        return reverse('jobs_query')
+

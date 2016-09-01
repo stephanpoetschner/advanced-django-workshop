@@ -8,5 +8,7 @@ urlpatterns = [
 
     url(r'^(?P<job_id>\d{1,50})/url/$', views.log_external_url,
         name='jobs_log_external'),
+
+    url(r'add/$', views.JobCreate.as_view(), name='job-add'),
 ]
 
